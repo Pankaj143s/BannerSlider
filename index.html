@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TickTest Slider – 3-Slide Flow w/ Overlap</title>
+    <!-- Updated CSS -->
+    <link rel="stylesheet" href="./assets/ticktest-slider.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <!-- DEMO CONTENT ABOVE -->
+    <div
+      style="
+        height: 100vh;
+        background: #ddd;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      "
+    >
+      <h1>Landing Page Banner (Scroll or Arrows)</h1>
+    </div>
+
+    <!-- SLIDER WRAPPER -->
+    <div id="mySliderWrapper">
+      <!-- Horizontal track => slides 1 & 2 side-by-side -->
+      <div class="slides-track" id="slidesTrack">
+        <!-- Slide 1 => background -->
+        <div
+          class="slide"
+          id="slide1"
+          style="
+            background: url('./assets/slide_one_banner.png') center/cover
+              no-repeat;
+          "
+        >
+          <!-- Text Overlay (left side) -->
+          <div class="slide1-text-overlay">
+            <h2>100% natural tick protection</h2>
+            <ul>
+              <li>- reliable</li>
+              <li>- without poisons</li>
+              <li>- without side effects</li>
+            </ul>
+            <p>Development and research for biological tick protection.</p>
+          </div>
+        </div>
+
+        <!-- Slide 2 => background -->
+        <div
+          id="slide2"
+          style="
+            background: url('./assets/slide_two_banner.png') center/cover
+              no-repeat;
+          "
+        >
+          <div class="slide2-text-overlay">An Aaron Einstein production</div>
+        </div>
+      </div>
+
+      <!-- Slide 3 => smaller overlay with a background + video -->
+      <div class="slide" id="slide3">
+        <div class="slide3-content">
+          <!-- VIDEO (initially hidden) -->
+          <div class="video-slider-viewport" id="videoSlider">
+            <div class="video-slide" id="videoSlide">
+              <video id="tickVideo" muted playsinline>
+                <source src="./assets/TestVideo.mp4" type="video/mp4" />
+              </video>
+
+              <!-- White panel with final text -->
+              <div class="repellent-all" id="repellentAll">
+                <div class="repellent-text2" id="repellentText2">
+                  <span id="repellentCount">0%</span> of all tick repellents we
+                  have tested<br />
+                  do not pass this test
+                </div>
+              </div>
+              <!-- /repellent-all -->
+            </div>
+            <!-- /videoSlide -->
+          </div>
+          <!-- /videoSlider -->
+        </div>
+        <!-- /slide3-content -->
+      </div>
+      <!-- /slide3 -->
+
+      <!-- GLOBAL ARROWS -->
+      <div class="arrow arrow-left" id="arrowLeft">
+        <img src="./assets/left_arrow.png" alt="left-arrow" />
+      </div>
+      <div class="arrow arrow-right" id="arrowRight">
+        <img src="./assets/right_arrow.png" alt="right-arrow" />
+      </div>
+    </div>
+    <!-- /mySliderWrapper -->
+
+    <!-- DEMO CONTENT BELOW -->
+    <div
+      style="
+        height: 100vh;
+        background: #ccc;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      "
+    >
+      <h2>More Landing Page Content</h2>
+    </div>
+
+    <!-- Updated JS -->
+    <script src="./assets/ticktest-slider.js"></script>
+  </body>
+</html>

@@ -1,0 +1,404 @@
+/* --------------------------------------------
+   GLOBAL RESET & BASE FONTS
+-------------------------------------------- */
+* {
+  margin: 0 !important;
+  padding: 0 !important;
+  box-sizing: border-box !important;
+}
+
+body {
+  background: #ddd !important;
+  font-family: "Roboto", Arial, sans-serif !important;
+  font-weight: 400 !important;
+}
+
+/* --------------------------------------------
+   SLIDER WRAPPER => 100vh for full-screen banners
+-------------------------------------------- */
+#mySliderWrapper {
+  width: 100vw !important;
+  height: 100vh !important;
+  overflow: hidden !important;
+  position: relative !important;
+}
+
+.slides-track {
+  display: flex !important;
+  flex-wrap: nowrap !important;
+  width: 200vw !important;
+  height: 100% !important;
+  transition: transform 0.8s ease !important;
+}
+
+/* --------------------------------------------
+   SLIDE 1 & SLIDE 2 => full-screen (100vh)
+-------------------------------------------- */
+#slide1,
+#slide2 {
+  width: 100vw !important;
+  height: 100vh !important;
+  flex: 0 0 auto !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+/* Slide1 TEXT OVERLAY */
+#slide1 .slide1-text-overlay {
+  position: absolute !important;
+  left: 12% !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  color: #fff !important;
+  max-width: 500px !important;
+  font-family: "Roboto", Arial, sans-serif !important;
+  font-weight: 400 !important;
+  font-size: 1rem !important;
+  line-height: 1.4 !important;
+}
+#slide1 .slide1-text-overlay h2,
+#slide1 .slide1-text-overlay p,
+#slide1 .slide1-text-overlay ul,
+#slide1 .slide1-text-overlay li {
+  font-weight: 400 !important;
+}
+#slide1 .slide1-text-overlay h2 {
+  font-size: 1.8rem !important;
+  margin-bottom: 1.8rem !important;
+}
+#slide1 .slide1-text-overlay ul {
+  list-style: none !important;
+  margin-bottom: 1.8rem !important;
+}
+#slide1 .slide1-text-overlay li {
+  font-size: 1.1rem !important;
+  margin-bottom: 1rem !important;
+}
+#slide1 .slide1-text-overlay p {
+  font-size: 1.25rem !important;
+  line-height: 1.4 !important;
+}
+
+/* Slide2 => can blur if slide3 is on top */
+#slide2 {
+  transition: filter 0.8s ease !important;
+}
+#slide2.blur {
+  filter: blur(6px) brightness(0.7) !important;
+}
+
+/* Slide2 TEXT OVERLAY => bottom centered */
+#slide2 .slide2-text-overlay {
+  position: absolute !important;
+  bottom: 15% !important;
+  width: 100% !important;
+  text-align: center !important;
+  color: #fff !important;
+  font-family: "Roboto", Arial, sans-serif !important;
+  font-weight: 400 !important;
+  font-size: 1.8rem !important;
+  line-height: 1.4 !important;
+}
+
+/* --------------------------------------------
+   SLIDE 3 => smaller overlay + video
+-------------------------------------------- */
+#slide3 {
+  position: absolute !important;
+  width: 80vw !important;
+  height: 80vh !important;
+  top: 50% !important;
+  left: 50% !important;
+  z-index: 2 !important;
+  background: url("ticktest-background-slide2.png") center/cover no-repeat !important;
+  transform: translate(-50%, -50%) translateX(100vw) !important;
+  transition: transform 0.8s ease !important;
+  pointer-events: none !important;
+  overflow: hidden !important;
+  border-radius: 20px !important;
+}
+#slide3.active {
+  transform: translate(-50%, -50%) translateX(0) !important;
+  pointer-events: auto !important;
+}
+.slide3-content {
+  position: relative !important;
+  width: 100% !important;
+  height: 100% !important;
+  z-index: 2 !important;
+}
+
+/* --------------------------------------------
+   VIDEO + final text
+-------------------------------------------- */
+#tickVideo {
+  /* Lower z-index so final text can appear above */
+  position: relative !important;
+  z-index: 100 !important;
+  border-radius: 10px !important;
+  max-width: 80% !important;
+  max-height: 40vh !important;
+  object-fit: cover !important;
+  transform: scale(0.7) !important;
+  transition: transform 1s ease-out, opacity 0.8s ease !important;
+}
+#tickVideo.active-video {
+  transform: scale(1.2) !important;
+}
+#tickVideo.dimmed {
+  opacity: 0.85 !important;
+  transform: scale(0.85) !important;
+}
+
+/* The container that holds final text */
+.repellent-all {
+  position: relative !important;
+  z-index: 9999 !important; /* ensure above the video */
+  background: rgba(255, 255, 255, 0.92) !important;
+  border-radius: 6px !important;
+  padding: 16px !important;
+  max-height: 0 !important;
+  overflow: hidden !important;
+  text-align: center !important;
+  opacity: 0 !important;
+  transition: max-height 1s ease, opacity 0.8s ease !important;
+}
+.repellent-all.expanded {
+  opacity: 1 !important;
+  max-height: 800px !important; /* increase to ensure no clipping */
+}
+
+/* The actual text */
+.repellent-text2 {
+  position: relative !important;
+  z-index: 10000 !important; /* on top of everything */
+  font-size: 20px !important;
+  text-align: center !important;
+  color: #162144 !important;
+  opacity: 0 !important;
+  transition: opacity 1s ease !important;
+  padding: 8px !important;
+  opacity: 1 !important;
+}
+#repellentCount {
+  font-size: 24px !important;
+  margin-right: 6px !important;
+}
+
+/* The container that holds the video & final text */
+.video-slider-viewport {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  pointer-events: none !important;
+  opacity: 0 !important;
+  transition: opacity 0.8s ease !important;
+}
+.video-slider-viewport.active {
+  pointer-events: auto !important;
+  opacity: 1 !important;
+}
+.video-slide {
+  position: relative !important;
+  width: 100% !important;
+  height: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  opacity: 0 !important;
+  transition: opacity 0.8s ease !important;
+}
+.video-slide.active {
+  opacity: 1 !important;
+}
+
+/* --------------------------------------------
+   ARROW NAV
+-------------------------------------------- */
+.arrow {
+  position: absolute !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  color: #d3d3d3 !important;
+  font-size: 32px !important;
+  padding: 8px !important;
+  cursor: pointer !important;
+  user-select: none !important;
+  background: none !important;
+  border: none !important;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6) !important;
+  opacity: 0.5 !important;
+  z-index: 999 !important;
+}
+.arrow-left {
+  left: 10px !important;
+}
+.arrow-right {
+  right: 10px !important;
+}
+
+/* --------------------------------------------
+   RESPONSIVE OPTIONAL
+-------------------------------------------- */
+/* Mobile View */
+@media (max-width: 480px) {
+  #slide1 .slide1-text-overlay {
+    left: 5% !important;
+    top: 80% !important;
+  }
+  #slide1 .slide1-text-overlay h2 {
+    font-size: 1.4rem !important;
+  }
+  #slide1 .slide1-text-overlay p {
+    font-size: 1.1rem !important;
+    line-height: 1.4 !important;
+  }
+  #slide2 .slide2-text-overlay {
+    bottom: 7% !important;
+    font-size: 1.4rem !important;
+  }
+
+  #slide1 {
+    background: url("./slide_one_banner_mobile.png") center/cover no-repeat !important;
+  }
+  #slide2 {
+    background: url("./slide_two_banner_mobile.png") center/cover no-repeat !important;
+  }
+  #slide3 {
+    background: url("./ticktest-bg-tablet.png") 45% center/cover no-repeat !important;
+    width: 90vw !important;
+    height: 90vh !important;
+  }
+  .arrow {
+    font-size: 24px !important;
+  }
+  #slide3 {
+    width: 90vw !important;
+    height: 40vh !important;
+  }
+  .repellent-all {
+    padding: 0px !important;
+  }
+  .repellent-all.expanded {
+    max-height: 180px !important;
+  }
+  .repellent-text2 {
+    font-size: 16px !important;
+    padding: 8px !important;
+  }
+  #repellentCount {
+    font-size: 20px !important;
+    font-weight: 600 !important;
+    margin-right: 4px !important;
+  }
+  .video-slide {
+    gap: 0rem !important;
+  }
+}
+
+/* Tablet View */
+@media (min-width: 481px) and (max-width: 810px) {
+  #slide1 .slide1-text-overlay {
+    left: 15% !important;
+    top: 80% !important;
+  }
+  #slide2 .slide2-text-overlay {
+    bottom: 6% !important;
+    font-size: 1.8rem !important;
+  }
+  #slide1 {
+    background: url("./slide_one_banner_mobile.png") center/cover no-repeat !important;
+  }
+  #slide2 {
+    background: url("./slide_two_banner_mobile.png") center/cover no-repeat !important;
+  }
+  #slide3 {
+    background: url("./ticktest-bg-tablet.png") center/cover no-repeat !important;
+    width: 85vw !important;
+    height: 85vh !important;
+  }
+  #slide3 {
+    width: 90vw !important;
+    height: 70vh !important;
+  }
+  .repellent-all {
+    padding: 10px !important;
+  }
+  .repellent-all.expanded {
+    max-height: 250px !important;
+  }
+  #repellentText2 {
+    font-size: 1.6 !important;
+  }
+  #tickVideo {
+    max-height: 45vh !important;
+  }
+  #repellentCount {
+    font-size: 22px !important;
+    margin-right: 6px !important;
+  }
+}
+
+/* Laptop View */
+@media (min-width: 811px) and (max-width: 1024px) {
+  #slide1 .slide1-text-overlay {
+    left: 17% !important;
+    top: 78% !important;
+  }
+  #slide2 .slide2-text-overlay {
+    bottom: 6% !important;
+    font-size: 1.8rem !important;
+  }
+  #slide1 {
+    background: url("./slide_one_banner.png") center/cover no-repeat !important;
+  }
+  #slide2 {
+    background: url("./assets/slide_two_banner.png") center/cover no-repeat !important;
+  }
+  #slide3 {
+    background: url("./ticktest-background-slide2.png") 32% center / cover
+      no-repeat !important;
+    width: 90vw !important;
+    height: 50vh !important;
+  }
+  .repellent-all {
+    padding: 10px !important;
+  }
+  .repellent-all.expanded {
+    max-height: 250px !important;
+  }
+  #repellentText2 {
+    font-size: 1.6 !important;
+  }
+  #repellentCount {
+    font-size: 22px !important;
+    margin-right: 6px !important;
+  }
+  .video-slide {
+    gap: 0rem !important;
+  }
+  #tickVideo {
+    max-height: 35vh !important;
+  }
+}
+
+/* Large Monitors */
+@media (min-width: 1025px) {
+  #slide1 {
+    background: url("./slide_one_banner.png") center/cover no-repeat !important;
+  }
+  #slide2 {
+    background: url("./slide_two_banner.png") center/cover no-repeat !important;
+  }
+  #slide3 {
+    background: url("./ticktest-background-slide2.png") center/cover no-repeat !important;
+    width: 80vw !important;
+    height: 60vh !important;
+  }
+}
